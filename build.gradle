@@ -22,7 +22,7 @@ apply plugin: 'application'
 
 ext {
     springBootCfServiceBrokerVersion = "2.4.0"
-    baseName = 'openpaas-service-java-broker-mysql'
+    baseName = 'ap-mysql-broker'
     version =  '2.4'
 
     hibernateValidatorVersion = '5.1.0.Final'
@@ -39,7 +39,7 @@ jar {
     manifest {
         attributes  'Title': 'Mysql Broker', 'Version': version, 'Main-Class': mainClassName
     }
-    archiveName 'openpaas-service-java-broker-mysql.jar'
+    archiveName 'ap-mysql-broker.jar'
     dependsOn configurations.runtime
     from {
         configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
@@ -58,7 +58,7 @@ configurations {
 
 dependencies {
     
-    compile files('libs/openpaas-service-java-broker.jar')
+    compile files('libs/ap-service-broker-1.0.0.1.jar')
     
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
@@ -74,7 +74,8 @@ dependencies {
     compile('org.mariadb.jdbc:mariadb-java-client:1.2.0') {
         exclude group: 'net.java.dev.jna'
     }
-    compile "org.springframework:spring-jdbc:4.0.0.M3"
+    //compile "org.springframework:spring-jdbc:4.0.0.M3"
+    compile "org.springframework:spring-jdbc:4.0.0.RELEASE"
     compile 'mysql:mysql-connector-java:8.0.28'
 
 }
